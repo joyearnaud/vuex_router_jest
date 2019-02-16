@@ -25,7 +25,9 @@ const mutations = {
 
 const actions = {
 	addNumber(context, number) {
+		debugger;
 		context.commit('ADD_NUMBER', number);
+		debugger;
 	},
 	addUser(context, user) {
 		context.commit('ADD_USER', user);
@@ -41,9 +43,9 @@ const getters = {
 	},
 };
 
-export default new Vuex.Store({
+export default {
 	state,
 	mutations,
 	actions,
 	getters,
-});
+};

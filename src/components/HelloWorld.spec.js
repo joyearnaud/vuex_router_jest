@@ -7,11 +7,10 @@ import {
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 
-import storeLegacy from '../store';
+import store from '../store';
 
 import HelloWorld from './HelloWorld.vue';
 
-let store;
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
@@ -22,17 +21,16 @@ function createWrapper() {
 const router = localVue.use(VueRouter);
 
 describe('HelloWorld.vue', () => {
-	beforeEach(() => {
-		store = new Vuex.Store({
-			modules: {
-				store: storeLegacy,
-			},
-		});
-	});
-
 	it('should fetch store', () => {
 		const wrapper = createWrapper();
 
-		expect(store.getters.getNumbers).toEqual([]);
+		expect(store.getters.getNumbers).toEqual([1, 2, 3]);
+		expect(store.getters.getUser).toEqual({
+			firstName: null,
+			id: null,
+			lastName: null,
+			password: null,
+			username: null,
+		});
 	});
 });

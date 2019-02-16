@@ -82,7 +82,7 @@ export default {
 				error => {
 					this.error = error;
 					this.loading = false;
-				},
+				}
 			);
 		},
 	},

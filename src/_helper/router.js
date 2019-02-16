@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import store from '../store';
+import store from '../store/index.js';
 
 import HelloWorld from '../components/HelloWorld';
 import Accueil from '../components/Accueil';
@@ -45,6 +45,7 @@ router.beforeEach((to, from, next) => {
 	// const loggedIn = localStorage.getItem('user');
 	const loggedIn = store.getters.getUser;
 	const isLogged = !!Object.values(loggedIn).filter(x => x).length;
+
 	if (authRequired && !isLogged) {
 		return next({
 			path: '/',
