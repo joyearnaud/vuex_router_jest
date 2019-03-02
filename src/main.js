@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import store from './store';
+import SuiVue from 'semantic-ui-vue';
 
 import { router } from './_helper/router.js';
 
@@ -12,6 +13,8 @@ configureFakeBackend();
 
 Vue.config.devtools = true;
 Vue.config.productionTip = false;
+
+Vue.use(SuiVue);
 
 const state = {
 	loading: false,

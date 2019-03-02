@@ -1,36 +1,57 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import {
+	ADD_NUMBER,
+	ADD_USER,
+	LOGOFF_USER,
+	CHANGE_LAST_CONNEXION,
+} from './mutation-type';
+
 Vue.use(Vuex);
+
+const userDefault = {
+	authdata: null,
+	id: null,
+	username: null,
+	password: null,
+	firstName: null,
+	lastName: null,
+	lastLogin: null,
+};
 
 const state = {
 	numbers: [1, 2, 3],
-	user: {
-		id: null,
-		username: null,
-		password: null,
-		firstName: null,
-		lastName: null,
-	},
+	user: { ...userDefault },
+	lastConnexion: null,
 };
 
 const mutations = {
-	ADD_NUMBER(state, payload) {
+	[ADD_NUMBER](state, payload) {
 		state.numbers.push(payload);
 	},
-	ADD_USER(state, payload) {
-		state.user = payload;
+	[ADD_USER](state, payload) {
+		state.user = { ...payload };
+	},
+	[LOGOFF_USER](state) {
+		state.user = { ...userDefault };
+	},
+	[CHANGE_LAST_CONNEXION](state) {
+		state.lastConnexion = new Date();
 	},
 };
 
 const actions = {
 	addNumber(context, number) {
-		debugger;
-		context.commit('ADD_NUMBER', number);
-		debugger;
+		context.commit(ADD_NUMBER, number);
 	},
 	addUser(context, user) {
-		context.commit('ADD_USER', user);
+		let userWithLastLoginDate = { ...user, lastLogin: new Date() };
+		context.commit(ADD_USER, userWithLastLoginDate);
+		context.commit(CHANGE_LAST_CONNEXION);
+	},
+	logoffUser(context) {
+		context.commit(LOGOFF_USER);
 	},
 };
 
@@ -40,6 +61,9 @@ const getters = {
 	},
 	getUser(state) {
 		return state.user;
+	},
+	getLastConnexion(state) {
+		return state.lastConnexion;
 	},
 };
 
