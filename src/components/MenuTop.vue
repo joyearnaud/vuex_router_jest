@@ -15,7 +15,7 @@
 			<a
 				is="sui-menu-item"
 				:active="isActive('Logout')"
-				content="Logout"
+				content="logout"
 				@click="logOff"
 			/>
 		</sui-menu-menu>
@@ -45,6 +45,7 @@ export default {
 			router.push('/' + this.active);
 		},
 		logOff() {
+			this.$socket.emit('disconnect');
 			this.$store.dispatch('logoffUser');
 			return router.push('/');
 		},

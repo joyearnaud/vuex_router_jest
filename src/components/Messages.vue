@@ -1,107 +1,131 @@
 <template>
-	<div>
-		<div class="ui right floated header">
-			<h2>Online users</h2>
-			<div class="ui items ">
-				<div class="item">
-					<a class="ui mini image">
-						<img
-							src="https://avataaars.io/?avatarStyle=Circle&topType=WinterHat4&accessoriesType=Kurt&hatColor=Blue02&facialHairType=BeardMagestic&facialHairColor=Auburn&clotheType=ShirtVNeck&clotheColor=PastelYellow&eyeType=Dizzy&eyebrowType=Default&mouthType=Concerned&skinColor=Brown"
-						/>
-					</a>
-					<div class="description">Matt</div>
-				</div>
-				<div class="item">
-					<a class="ui mini image">
-						<img
-							src="https://avataaars.io/?avatarStyle=Circle&topType=Hijab&accessoriesType=Round&hatColor=PastelGreen&hairColor=Platinum&facialHairType=BeardMagestic&facialHairColor=Auburn&clotheType=Overall&clotheColor=White&eyeType=WinkWacky&eyebrowType=DefaultNatural&mouthType=Eating&skinColor=Light"
-						/>
-					</a>
-					<div class="description">Elliot Fu</div>
-				</div>
-				<div class="item">
-					<a class="ui mini image">
-						<img
-							src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&accessoriesType=Round&hairColor=Blonde&facialHairType=MoustacheMagnum&facialHairColor=Red&clotheType=CollarSweater&clotheColor=PastelGreen&eyeType=Close&eyebrowType=AngryNatural&mouthType=Grimace&skinColor=Tanned"
-						/>
-					</a>
-					<div class="description">Jenny Hess</div>
-				</div>
-				<div class="item">
-					<a class="ui mini image">
-						<img
-							src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads01&accessoriesType=Sunglasses&hairColor=Blonde&facialHairType=BeardLight&facialHairColor=Red&clotheType=BlazerSweater&clotheColor=PastelGreen&eyeType=Dizzy&eyebrowType=UnibrowNatural&mouthType=Sad&skinColor=Black"
-						/>
-					</a>
-					<div class="description">Joe Hende...</div>
-				</div>
+	<div class="ui container">
+		<div id="chat" class="ui segment">
+			<div class="ui segment" v-for="message in messages">
+				{{ message.content }}
 			</div>
 		</div>
-
-		<div class="ui threaded comments">
-			<div class="comment">
-				<a class="avatar">
-					<img
-						src="https://avataaars.io/?avatarStyle=Circle&topType=WinterHat4&accessoriesType=Kurt&hatColor=Blue02&facialHairType=BeardMagestic&facialHairColor=Auburn&clotheType=ShirtVNeck&clotheColor=PastelYellow&eyeType=Dizzy&eyebrowType=Default&mouthType=Concerned&skinColor=Brown"
-					/>
-				</a>
-				<div class="content">
-					<a class="author">Matt</a>
-					<div class="metadata"><span class="date">Today at 5:42PM</span></div>
-					<div class="text">How artistic!</div>
-					<div class="actions"><a class="reply">Reply</a></div>
-				</div>
+		<form class="ui reply form">
+			<div class="field">
+				<textarea rows="1" v-model="messageText"></textarea>
 			</div>
-			<div class="comment">
-				<a class="avatar">
-					<img
-						src="https://avataaars.io/?avatarStyle=Circle&topType=Hijab&accessoriesType=Round&hatColor=PastelGreen&hairColor=Platinum&facialHairType=BeardMagestic&facialHairColor=Auburn&clotheType=Overall&clotheColor=White&eyeType=WinkWacky&eyebrowType=DefaultNatural&mouthType=Eating&skinColor=Light"
-					/>
-				</a>
-				<div class="content">
-					<a class="author">Elliot Fu</a>
-					<div class="metadata">
-						<span class="date">Yesterday at 12:30AM</span>
-					</div>
-					<div class="text">
-						<p>This has been very useful for my research. Thanks as well!</p>
-					</div>
-					<div class="actions"><a class="reply">Reply</a></div>
-				</div>
-				<div class="comments">
-					<div class="comment">
-						<a class="avatar">
-							<img
-								src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&accessoriesType=Round&hairColor=Blonde&facialHairType=MoustacheMagnum&facialHairColor=Red&clotheType=CollarSweater&clotheColor=PastelGreen&eyeType=Close&eyebrowType=AngryNatural&mouthType=Grimace&skinColor=Tanned"
-							/>
-						</a>
-						<div class="content">
-							<a class="author">Jenny Hess</a>
-							<div class="metadata"><span class="date">Just now</span></div>
-							<div class="text">Elliot you are always so right :)</div>
-						</div>
-					</div>
-				</div>
+			<div class="ui blue labeled icon button" @click="sendMessage();">
+				<i class="icon edit"></i> Add Reply
 			</div>
-			<div class="comment">
-				<a class="avatar">
-					<img
-						src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads01&accessoriesType=Sunglasses&hairColor=Blonde&facialHairType=BeardLight&facialHairColor=Red&clotheType=BlazerSweater&clotheColor=PastelGreen&eyeType=Dizzy&eyebrowType=UnibrowNatural&mouthType=Sad&skinColor=Black"
-					/>
-				</a>
-				<div class="content">
-					<a class="author">Joe Henderson</a>
-					<div class="metadata"><span class="date">5 days ago</span></div>
-					<div class="text">Dude, this is awesome. Thanks so much</div>
-					<div class="actions"><a class="reply">Reply</a></div>
-				</div>
-			</div>
-			<form class="ui reply form">
-				<div class="field"><textarea></textarea></div>
-				<div class="ui blue labeled icon button">
-					<i class="icon edit"></i> Add Reply
-				</div>
-			</form>
-		</div>
+		</form>
 	</div>
 </template>
+
+//------------------------------ //------------------------------
+
+<script>
+const MESSAGE = {
+	type: 'message',
+	content: '',
+	author: null,
+};
+export default {
+	name: 'Message',
+	data: function() {
+		return {
+			messages: [],
+			messageText: '',
+			message: {
+				...MESSAGE,
+			},
+			chatDomElem: null,
+		};
+	},
+	created() {
+		this.active = this.$router.currentRoute.name;
+		this.messages = this.getMessages;
+	},
+	mounted() {
+		this.chatDomElem = document.querySelector('#chat');
+		this.animateScroll();
+	},
+	sockets: {
+		connect: function() {
+			console.log('socket connected');
+		},
+		disconnect: function() {
+			console.log('socket disconnected');
+		},
+		getUser: function(data) {
+			console.log('Welcome to the chat, your ID is : ' + data);
+			this.$socket.emit('setUser', this.getUser);
+		},
+		message: function(data) {
+			console.log(data.content);
+			this.messages.push(data);
+		},
+	},
+	methods: {
+		animateScroll() {
+			let duration = 300;
+			let element = this.chatDomElem;
+			var start = element.scrollTop;
+			var end = element.scrollHeight;
+			var change = end - start;
+			var increment = 20;
+			function easeInOut(currentTime, start, change, duration) {
+				// by Robert Penner
+				currentTime /= duration / 2;
+				if (currentTime < 1) {
+					return (change / 2) * currentTime * currentTime + start;
+				}
+				currentTime -= 1;
+				return (-change / 2) * (currentTime * (currentTime - 2) - 1) + start;
+			}
+			function animate(elapsedTime) {
+				elapsedTime += increment;
+				var position = easeInOut(elapsedTime, start, change, duration);
+				element.scrollTop = position;
+				if (elapsedTime < duration) {
+					setTimeout(function() {
+						animate(elapsedTime);
+					}, increment);
+				}
+			}
+			animate(0);
+		},
+		sendMessage() {
+			this.$socket.emit('message', this.getMessage);
+			[this.message, this.messageText] = [{ ...MESSAGE }, ''];
+			this.animateScroll();
+		},
+	},
+	computed: {
+		getUser: function() {
+			return this.$store.getters.getUser;
+		},
+		getMessages: function() {
+			return this.$store.getters.getMessages;
+		},
+		getMessage: function() {
+			let returnMessage = {
+				type: 'message',
+				content: this.messageText,
+				author: this.getUser,
+			};
+			return returnMessage;
+		},
+	},
+};
+</script>
+
+//------------------------------ //------------------------------
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.container {
+	height: 100%;
+}
+#chat {
+	height: 400px;
+	overflow-y: auto;
+	white-space: nowrap;
+	// display: flex;
+	// flex-direction: column-reverse;
+}
+</style>

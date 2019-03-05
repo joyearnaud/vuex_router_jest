@@ -6,6 +6,7 @@ import {
 	ADD_USER,
 	LOGOFF_USER,
 	CHANGE_LAST_CONNEXION,
+	SOCKET_MESSAGE,
 } from './mutation-type';
 
 Vue.use(Vuex);
@@ -24,6 +25,7 @@ const state = {
 	numbers: [1, 2, 3],
 	user: { ...userDefault },
 	lastConnexion: null,
+	messages: [],
 };
 
 const mutations = {
@@ -39,9 +41,13 @@ const mutations = {
 	[CHANGE_LAST_CONNEXION](state) {
 		state.lastConnexion = new Date();
 	},
+	[SOCKET_MESSAGE](state, payload) {
+		state.messages.push(payload);
+	},
 };
 
 const actions = {
+	//USER
 	addNumber(context, number) {
 		context.commit(ADD_NUMBER, number);
 	},
@@ -52,6 +58,10 @@ const actions = {
 	},
 	logoffUser(context) {
 		context.commit(LOGOFF_USER);
+	},
+	//MESSAGE
+	SOCKET_MESSAGE(context, message) {
+		context.commit(SOCKET_MESSAGE, message);
 	},
 };
 
@@ -64,6 +74,9 @@ const getters = {
 	},
 	getLastConnexion(state) {
 		return state.lastConnexion;
+	},
+	getMessages(state) {
+		return state.messages;
 	},
 };
 

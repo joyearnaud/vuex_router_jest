@@ -4,12 +4,25 @@ import Vue from 'vue';
 import App from './App';
 import store from './store';
 import SuiVue from 'semantic-ui-vue';
+import VueSocketIO from 'vue-socket.io';
 
 import { router } from './_helper/router.js';
 
 // setup fake backend
 import { configureFakeBackend } from './_helper/fakeBakend';
 configureFakeBackend();
+
+Vue.use(
+	new VueSocketIO({
+		debug: true,
+		connection: 'https://wk69ynk7ql.sse.codesandbox.io/',
+		vuex: {
+			store,
+			actionPrefix: 'SOCKET_',
+			mutationPrefix: 'SOCKET_',
+		},
+	}),
+);
 
 Vue.config.devtools = true;
 Vue.config.productionTip = false;

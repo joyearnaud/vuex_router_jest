@@ -1,1 +1,10 @@
-{}
+{
+	"version": 2,
+	"name": "chaton",
+	"builds": [
+		{
+			"src": "package.json",
+			"use": "@now/static-build"
+		}
+	]
+}

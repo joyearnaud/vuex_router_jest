@@ -1,9 +1,8 @@
 <template>
-	<sui-container><MenuTop /><router-view></router-view> </sui-container>
+	<div class="ui container"><MenuTop /><router-view></router-view></div>
 </template>
 
 <script>
-import { router } from '../_helper/router';
 import MenuTop from './MenuTop';
 
 export default {
