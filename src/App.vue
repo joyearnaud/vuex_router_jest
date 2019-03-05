@@ -7,6 +7,17 @@
 <script>
 export default {
 	name: 'App',
+	data: function() {
+		return {};
+	},
+	mounted() {
+		window.addEventListener('beforeunload', this.leaving);
+	},
+	methods: {
+		leaving: function() {
+			this.$store.dispatch('changeLastRefresh');
+		},
+	},
 };
 </script>
 

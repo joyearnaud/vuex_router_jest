@@ -3,6 +3,7 @@
 		<h1>{{ msg }}</h1>
 		<p>number depuis le store : {{ getNumbers }}</p>
 		<p>user depuis le store : {{ getUserInfo }}</p>
+		<p>lastRefresh depuis le store : {{ getLastRefresh }}</p>
 	</sui-container>
 </template>
 
@@ -33,6 +34,9 @@ export default {
 		},
 		getUserInfo: function() {
 			return this.getFullName(this.getUser);
+		},
+		getLastRefresh: function() {
+			return this.$store.getters.getLastRefresh;
 		},
 	},
 };

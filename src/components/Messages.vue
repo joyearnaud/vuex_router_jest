@@ -43,6 +43,7 @@ export default {
 	mounted() {
 		this.chatDomElem = document.querySelector('#chat');
 		this.animateScroll();
+		window.addEventListener('beforeunload', this.leaving);
 	},
 	sockets: {
 		connect: function() {
@@ -61,6 +62,9 @@ export default {
 		},
 	},
 	methods: {
+		leaving() {
+			alert('Leaving...');
+		},
 		animateScroll() {
 			let duration = 300;
 			let element = this.chatDomElem;
