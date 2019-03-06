@@ -12,8 +12,6 @@ import Error404 from '../components/Error404';
 
 Vue.use(Router);
 
-//https://www.mikestreety.co.uk/blog/vue-js-using-localstorage-with-the-vuex-store
-
 export const router = new Router({
 	mode: 'history',
 	routes: [

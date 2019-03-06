@@ -16,10 +16,10 @@ const userDefault = {
 	authdata: null,
 	id: null,
 	username: null,
-	password: null,
 	firstName: null,
 	lastName: null,
 	lastLogin: null,
+  picture: null,
 };
 
 const state = {

@@ -6,6 +6,7 @@ export function configureFakeBackend() {
 			password: 'test',
 			firstName: 'Arn',
 			lastName: 'Boy',
+      picture: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads01&accessoriesType=Sunglasses&hairColor=Blonde&facialHairType=BeardLight&facialHairColor=Red&clotheType=BlazerSweater&clotheColor=PastelGreen&eyeType=Dizzy&eyebrowType=UnibrowNatural&mouthType=Sad&skinColor=Black'
 		},
 		{
 			id: 2,
@@ -13,6 +14,7 @@ export function configureFakeBackend() {
 			password: 't',
 			firstName: 'Ula',
 			lastName: 'Czer',
+      picture: 'https://avataaars.io/?avatarStyle=Circle&topType=Hijab&accessoriesType=Round&hatColor=PastelGreen&hairColor=Platinum&facialHairType=BeardMagestic&facialHairColor=Auburn&clotheType=Overall&clotheColor=White&eyeType=WinkWacky&eyebrowType=DefaultNatural&mouthType=Eating&skinColor=Light'
 		},
 	];
 	let realFetch = window.fetch;
@@ -41,6 +43,7 @@ export function configureFakeBackend() {
 							username: user.username,
 							firstName: user.firstName,
 							lastName: user.lastName,
+              picture: user.picture,
 						};
 						resolve({
 							ok: true,

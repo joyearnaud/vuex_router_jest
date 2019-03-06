@@ -8,14 +8,20 @@ import VueSocketIO from 'vue-socket.io';
 
 import { router } from './_helper/router.js';
 
+import 'semantic-ui-css/semantic.min.css';
+
 // setup fake backend
 import { configureFakeBackend } from './_helper/fakeBakend';
 configureFakeBackend();
 
+Vue.config.devtools = true;
+Vue.config.productionTip = false;
+
+Vue.use(SuiVue);
 Vue.use(
 	new VueSocketIO({
 		debug: true,
-		connection: 'https://wk69ynk7ql.sse.codesandbox.io/',
+		connection: 'http://localhost:9090',
 		vuex: {
 			store,
 			actionPrefix: 'SOCKET_',
@@ -23,11 +29,6 @@ Vue.use(
 		},
 	}),
 );
-
-Vue.config.devtools = true;
-Vue.config.productionTip = false;
-
-Vue.use(SuiVue);
 
 const state = {
 	loading: false,
