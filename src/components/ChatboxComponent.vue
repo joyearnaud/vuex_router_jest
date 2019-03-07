@@ -2,7 +2,7 @@
   <div id="chat" class="ui segment">
     <div class="ui segment" v-for="message in messages">
       <img class="ui avatar image" :src="message.author.picture">
-      <span><b>{{ message.author.lastName }}</b></span>
+      <span><b>{{ message.author.firstName }}</b></span>
       {{ message.content }}
     </div>
   </div>
@@ -77,5 +77,9 @@
 </script>
 
 <style scoped>
-
+  #chat {
+    height: 400px;
+    overflow-y: auto;
+    white-space: nowrap;
+  }
 </style>

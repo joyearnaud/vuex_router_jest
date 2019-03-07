@@ -2,20 +2,12 @@
   <div class="ui container">
 
     <div class="ui grid">
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         <ChatboxComponent ref="chatboxcomponent"></ChatboxComponent>
         <TypeMessageComponent></TypeMessageComponent>
       </div>
-      <div class="two wide column">
-        <div class="ui top attached demo menu">
-          <a class="item">
-            <i class="sidebar icon"></i>
-            Menu
-          </a>
-        </div>
-        <ul>
-          <li v-for="user in users">{{user.firstName}} {{user.lastName}}</li>
-        </ul>
+      <div class="three wide column">
+        <UsersComponent></UsersComponent>
       </div>
     </div>
 
@@ -28,17 +20,15 @@
 <script>
   import ChatboxComponent from './ChatboxComponent';
   import TypeMessageComponent from './TypeMessageComponent';
+  import UsersComponent from './UsersComponent';
 
   export default {
     name: 'Message',
-    components: {ChatboxComponent, TypeMessageComponent},
+    components: {ChatboxComponent, TypeMessageComponent, UsersComponent},
     data: function () {
-      return {
-        users: [],
-      };
+      return {};
     },
-    created() {
-      this.$socket.emit('getConnectedUsers');
+    mounted() {
     },
     sockets: {
       connect: function () {
@@ -47,24 +37,9 @@
       disconnect: function () {
         console.log('socket disconnected');
       },
-      getUser: function (userId) {
-        console.log('Welcome to the chat, your ID is : ' + userId);
-        this.$socket.emit('setUser', this.getUser);
-      },
-      setConnectedUsers: function (users) {
-          this.users = [...users];
-      }
     },
-    methods: {
-      getConnectedUsers: function () {
-        return this.users
-      }
-    },
-    computed: {
-      getUser: function () {
-        return this.$store.getters.getUser;
-      },
-    },
+    methods: {},
+    computed: {},
   };
 </script>
 
@@ -76,11 +51,13 @@
     height: 100%;
   }
 
-  #chat {
+  #users {
     height: 400px;
     overflow-y: auto;
     white-space: nowrap;
-  / / display: flex;
-  / / flex-direction: column-reverse;
   }
+
+  /*.dimmer:hover {*/
+  /*  active: true*/
+  /*}*/
 </style>

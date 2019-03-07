@@ -14,8 +14,16 @@ export function configureFakeBackend() {
 			password: 't',
 			firstName: 'Ula',
 			lastName: 'Czer',
-      picture: 'https://avataaars.io/?avatarStyle=Circle&topType=Hijab&accessoriesType=Round&hatColor=PastelGreen&hairColor=Platinum&facialHairType=BeardMagestic&facialHairColor=Auburn&clotheType=Overall&clotheColor=White&eyeType=WinkWacky&eyebrowType=DefaultNatural&mouthType=Eating&skinColor=Light'
+      picture: 'https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=Blonde&facialHairType=Blank&clotheType=ShirtVNeck&clotheColor=Pink&eyeType=Wink&eyebrowType=Default&mouthType=Tongue&skinColor=Pale'
 		},
+    {
+      id: 3,
+      username: 'a',
+      password: 'a',
+      firstName: 'Bot',
+      lastName: 'Tob',
+      picture: 'https://avataaars.io/?avatarStyle=Circle&topType=Hijab&accessoriesType=Round&hatColor=PastelGreen&hairColor=Platinum&facialHairType=BeardMagestic&facialHairColor=Auburn&clotheType=Overall&clotheColor=White&eyeType=WinkWacky&eyebrowType=DefaultNatural&mouthType=Eating&skinColor=Light'
+    },
 	];
 	let realFetch = window.fetch;
 	window.fetch = function(url, opts) {
