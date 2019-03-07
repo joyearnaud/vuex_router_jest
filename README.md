@@ -1,6 +1,6 @@
 # test-project
 
-> A Vue.js project
+> vuex_router_jest
 
 ## Build Setup
 
