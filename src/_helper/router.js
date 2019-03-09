@@ -3,10 +3,10 @@ import Router from 'vue-router';
 
 import store from '../store/index.js';
 
-import Landing from '../components/Landing';
-import Home from '../components/Home';
-import Messages from '../components/Messages';
-import Friends from '../components/Friends';
+import Landing from '../components/landing/Landing';
+import Home from '../components/landing/home/Home';
+import Messages from '../components/landing/message/Messages';
+import Friends from '../components/landing/friend/Friends';
 import Accueil from '../components/Accueil';
 import Error404 from '../components/Error404';
 

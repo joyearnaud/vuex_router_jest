@@ -3,7 +3,7 @@
     <div class="field">
       <textarea rows="1" v-model="messageText"></textarea>
     </div>
-    <div class="ui blue labeled icon button" @click="sendMessage();">
+    <div @click="sendMessage()" class="ui blue labeled icon button">
       <i class="icon edit"></i> Add Reply
     </div>
   </form>
@@ -41,12 +41,11 @@
         return this.$store.getters.getUser;
       },
       getMessage: function () {
-        let returnMessage = {
+        return {
           type: 'message',
           content: this.messageText,
           author: this.getUser,
         };
-        return returnMessage;
       },
     },
   }

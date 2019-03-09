@@ -1,9 +1,10 @@
 <template>
   <div id="chat" class="ui segment">
-    <div class="ui segment" v-for="message in messages">
+    <div :class="{channelMessage: !isUserMessage(message), userMessage: isUserMessage(message)}" class="ui segment"
+         v-for="message in messages">
       <img class="ui avatar image" :src="message.author.picture">
-      <span><b>{{ message.author.firstName }}</b></span>
-      {{ message.content }}
+      <a><b><u>{{ message.author.firstName }}</u></b></a>
+      <p> {{ message.content }}</p>
     </div>
   </div>
 </template>
@@ -67,11 +68,17 @@
 
         animate(0);
       },
+      isUserMessage(message) {
+        return message.author.id === this.getUser.id;
+      }
     },
     computed: {
       getMessages: function () {
         return this.$store.getters.getMessages;
       },
+      getUser: function () {
+        return this.$store.getters.getUser;
+      }
     },
   }
 </script>
@@ -80,6 +87,25 @@
   #chat {
     height: 400px;
     overflow-y: auto;
-    white-space: nowrap;
+  }
+
+  #chat .segment {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .channelMessage {
+    display: table;
+    margin-right: 5em;
+  }
+
+  .userMessage {
+    clear: both;
+    word-wrap: break-word;
+    /*white-space:nowrap;*/
+    display: table;
+    margin-left: 5em;
   }
 </style>

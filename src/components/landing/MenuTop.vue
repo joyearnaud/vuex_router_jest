@@ -6,7 +6,7 @@
       :active="isActive(item)"
       :key="item"
       :content="item"
-      @click="select(item);"
+      @click="select(item)"
     />
     <sui-menu-menu position="right">
       <sui-menu-item>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import {router} from '../_helper/router';
+  import {router} from '../../_helper/router';
 
   export default {
     name: 'MenuTop',

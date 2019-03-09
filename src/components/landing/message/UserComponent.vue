@@ -47,13 +47,7 @@
     transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
   }
 
-  .fade-enter {
-    transform: translateX(50px);
-    opacity: 0;
-  }
-
-  .fade-leave-to /* .fade-leave-active below version 2.1.8 */
-  {
+  .fade-enter, .fade-leave-to {
     transform: translateX(50px);
     opacity: 0;
   }

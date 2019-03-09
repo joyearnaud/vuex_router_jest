@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import MenuTop from './MenuTop';
+  import MenuTop from './MenuTop';
 
-export default {
+  export default {
 	name: 'Landing',
 	data: function() {
 		return {};

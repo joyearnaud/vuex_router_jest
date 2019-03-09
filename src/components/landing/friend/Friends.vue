@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import Invitations from './Invitations';
-import CurrentFriendList from './CurrentFriendList.vue';
+  import Invitations from './Invitations';
+  import CurrentFriendList from './CurrentFriendList.vue';
 
-export default {
+  export default {
 	name: 'Friends',
 	data: function() {
 		return {
