@@ -21,7 +21,7 @@ Vue.use(SuiVue);
 Vue.use(
 	new VueSocketIO({
 		debug: true,
-		connection: 'https://meetus-back.netlify.com:9090',
+		connection: 'https://meetus-back.herokuapp.com:9090',
 		vuex: {
 			store,
 			actionPrefix: 'SOCKET_',
